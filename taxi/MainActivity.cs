@@ -16,6 +16,8 @@ using Android.Gms.Location;
 using Android.Locations;
 using Taxi.Helpers;
 using System;
+using Android.Content;
+using Android.Gms.Location.Places.UI;
 
 namespace Taxi
 {
@@ -25,6 +27,15 @@ namespace Taxi
         FirebaseDatabase database;
         Android.Support.V7.Widget.Toolbar mainToolbar;
         Android.Support.V4.Widget.DrawerLayout drawerLayout;
+
+        //Textviews
+        TextView pickupLocationText;
+        TextView destinationText;
+
+        //Layouts
+        RelativeLayout layoutPickup;
+        RelativeLayout layoutDestination;
+
         GoogleMap mainMap;
 
         readonly string[] permissionGroupLocation = { Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation };
@@ -63,13 +74,38 @@ namespace Taxi
 
         void ConnectControl() 
         {
+            //drawerlayout
             drawerLayout = (Android.Support.V4.Widget.DrawerLayout)FindViewById(Resource.Id.drawerLayout);
+            //toolbar
             mainToolbar = (Android.Support.V7.Widget.Toolbar)FindViewById(Resource.Id.mainToolbar);
             SetSupportActionBar(mainToolbar);
             SupportActionBar.Title = "";
             Android.Support.V7.App.ActionBar actionBar = SupportActionBar;
             actionBar.SetHomeAsUpIndicator(Resource.Mipmap.ic_menu_action);
             actionBar.SetDisplayHomeAsUpEnabled(true);
+            //Textview
+            pickupLocationText = (TextView)FindViewById(Resource.Id.pickupLocationText);
+            destinationText = (TextView)FindViewById(Resource.Id.destinationText);
+            //Layouts
+            layoutPickup = (RelativeLayout)FindViewById(Resource.Id.layoutPickUp);
+            layoutDestination = (RelativeLayout)FindViewById(Resource.Id.layoutDestination);
+
+            layoutPickup.Click += LayoutPickup_Click;
+            layoutDestination.Click += LayoutDestination_Click;
+        }
+
+        private void LayoutPickup_Click(object sender, EventArgs e)
+        {
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeOverlay).Build(this);
+
+            StartActivityForResult(intent, 1);
+        }
+
+        private void LayoutDestination_Click(object sender, EventArgs e)
+        {
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeOverlay).Build(this);
+
+            StartActivityForResult(intent, 2);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -177,6 +213,31 @@ namespace Taxi
             else
             {
                 Toast.MakeText(this, "Permission was denied", ToastLength.Short).Show();
+            }
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            if(requestCode == 1)
+            {
+                if (resultCode == Android.App.Result.Ok)
+                {
+                    var place = PlaceAutocomplete.GetPlace(this, data);
+                    pickupLocationText.Text = place.NameFormatted.ToString();
+                    mainMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(place.LatLng, 15));
+                }
+            }
+
+            if (requestCode == 2)
+            {
+                if (resultCode == Android.App.Result.Ok)
+                {
+                    var place = PlaceAutocomplete.GetPlace(this, data);
+                    destinationText.Text = place.NameFormatted.ToString();
+                    mainMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(place.LatLng, 15));
+                }
             }
         }
 

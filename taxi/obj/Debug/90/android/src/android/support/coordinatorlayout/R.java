@@ -33,8 +33,8 @@ public final class R {
 	public static final class color {
 		public static final int notification_action_color_filter = 0x7f05007a;
 		public static final int notification_icon_bg_color = 0x7f05007b;
-		public static final int ripple_material_light = 0x7f050086;
-		public static final int secondary_text_default_material_light = 0x7f050088;
+		public static final int ripple_material_light = 0x7f05008c;
+		public static final int secondary_text_default_material_light = 0x7f05008e;
 	}
 	public static final class dimen {
 		public static final int compat_button_inset_horizontal_material = 0x7f060050;
@@ -98,18 +98,18 @@ public final class R {
 		public static final int notification_background = 0x7f08008c;
 		public static final int notification_main_column = 0x7f08008d;
 		public static final int notification_main_column_container = 0x7f08008e;
-		public static final int right = 0x7f08009c;
-		public static final int right_icon = 0x7f08009d;
-		public static final int right_side = 0x7f08009e;
-		public static final int start = 0x7f0800c5;
-		public static final int tag_transition_group = 0x7f0800cb;
-		public static final int tag_unhandled_key_event_manager = 0x7f0800cc;
-		public static final int tag_unhandled_key_listeners = 0x7f0800cd;
-		public static final int text = 0x7f0800cf;
-		public static final int text2 = 0x7f0800d0;
-		public static final int time = 0x7f0800d8;
-		public static final int title = 0x7f0800d9;
-		public static final int top = 0x7f0800dc;
+		public static final int right = 0x7f0800a4;
+		public static final int right_icon = 0x7f0800a5;
+		public static final int right_side = 0x7f0800a6;
+		public static final int start = 0x7f0800cd;
+		public static final int tag_transition_group = 0x7f0800d3;
+		public static final int tag_unhandled_key_event_manager = 0x7f0800d4;
+		public static final int tag_unhandled_key_listeners = 0x7f0800d5;
+		public static final int text = 0x7f0800d7;
+		public static final int text2 = 0x7f0800d8;
+		public static final int time = 0x7f0800e0;
+		public static final int title = 0x7f0800e1;
+		public static final int top = 0x7f0800e4;
 	}
 	public static final class integer {
 		public static final int status_bar_notification_info_maxnum = 0x7f09000f;
@@ -123,7 +123,7 @@ public final class R {
 		public static final int notification_template_part_time = 0x7f0b0040;
 	}
 	public static final class string {
-		public static final int status_bar_notification_info_overflow = 0x7f0f0054;
+		public static final int status_bar_notification_info_overflow = 0x7f0f0056;
 	}
 	public static final class style {
 		public static final int TextAppearance_Compat_Notification = 0x7f100117;

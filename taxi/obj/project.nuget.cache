@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PE87aV1qrzx19zlMaLz5qvuql9AIUVV36Oj8boTHIcPCP+lLDbza2hE4vGeWr5V1vKs4p/WVewkUIL7UtVqbhg==",
+  "dgSpecHash": "UcjoitnlIQvSZvWVqr9ISMxD+tzqkP1dGa1VRtqzhdPf/dEZWIj6wW0czqK4ZeBl63t5e3fhy+aJBLg8kBExwA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\Taxi\\Taxi.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\Taxi\\Taxi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\refractored.controls.circleimageview\\1.0.1\\refractored.controls.circleimageview.1.0.1.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.common\\1.1.1.3\\xamarin.android.arch.core.common.1.1.1.3.nupkg.sha512",
@@ -56,6 +56,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.googleplayservices.flags\\71.1601.0\\xamarin.googleplayservices.flags.71.1601.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.googleplayservices.location\\71.1600.1\\xamarin.googleplayservices.location.71.1600.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.googleplayservices.maps\\71.1610.1\\xamarin.googleplayservices.maps.71.1610.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.googleplayservices.places\\71.1600.1\\xamarin.googleplayservices.places.71.1600.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.googleplayservices.places.placereport\\71.1600.1\\xamarin.googleplayservices.places.placereport.71.1600.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\xamarin.googleplayservices.tasks\\71.1601.1\\xamarin.googleplayservices.tasks.71.1601.1.nupkg.sha512"
   ],

@@ -49,5 +49,6 @@ Xamarin.GooglePlayServices.Basement
 Xamarin.GooglePlayServices.Flags
 Xamarin.GooglePlayServices.Location
 Xamarin.GooglePlayServices.Maps
+Xamarin.GooglePlayServices.Places
 Xamarin.GooglePlayServices.Places.PlaceReport
 Xamarin.GooglePlayServices.Tasks

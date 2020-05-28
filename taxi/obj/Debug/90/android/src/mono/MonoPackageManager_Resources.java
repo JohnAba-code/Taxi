@@ -54,6 +54,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.GooglePlayServices.Flags.dll",
 		"Xamarin.GooglePlayServices.Location.dll",
 		"Xamarin.GooglePlayServices.Maps.dll",
+		"Xamarin.GooglePlayServices.Places.dll",
 		"Xamarin.GooglePlayServices.Places.PlaceReport.dll",
 		"Xamarin.GooglePlayServices.Tasks.dll",
 	};

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Desktop\\Taxi\\Taxi.csproj": {}
+    "C:\\Users\\Lenovo\\Taxi\\Taxi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Desktop\\Taxi\\Taxi.csproj": {
+    "C:\\Users\\Lenovo\\Taxi\\Taxi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\Taxi\\Taxi.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Taxi\\Taxi.csproj",
         "projectName": "Taxi",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\Taxi\\Taxi.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Taxi\\Taxi.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\Taxi\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Taxi\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -93,6 +93,10 @@
             "Xamarin.GooglePlayServices.Maps": {
               "target": "Package",
               "version": "[71.1610.1, )"
+            },
+            "Xamarin.GooglePlayServices.Places": {
+              "target": "Package",
+              "version": "[71.1600.1, )"
             }
           }
         }
