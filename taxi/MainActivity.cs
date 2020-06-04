@@ -18,6 +18,7 @@ using Taxi.Helpers;
 using System;
 using Android.Content;
 using Android.Gms.Location.Places.UI;
+using Android.Gms.Location.Places;
 
 namespace Taxi
 {
@@ -96,14 +97,20 @@ namespace Taxi
 
         private void LayoutPickup_Click(object sender, EventArgs e)
         {
-            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeOverlay).Build(this);
+            AutocompleteFilter filter = new AutocompleteFilter.Builder().SetCountry("NG").Build();
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeOverlay)
+                .SetFilter(filter)
+                .Build(this);
 
             StartActivityForResult(intent, 1);
         }
 
         private void LayoutDestination_Click(object sender, EventArgs e)
         {
-            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeOverlay).Build(this);
+            AutocompleteFilter filter = new AutocompleteFilter.Builder().SetCountry("US").Build();
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.ModeOverlay)
+                .SetFilter(filter)
+                .Build(this);
 
             StartActivityForResult(intent, 2);
         }
