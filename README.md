@@ -50,6 +50,7 @@ Inside Visual Studio, install the following NuGet packages
 * Xamarin.Android.Support.Collections
 * Refractored.Controls.CircleImageView
 * Xamarin.GooglePlayServices.Places
+* Newtonsoft.Json
 
 ### Installation Process
 Firstly, On the GitHub repo
