@@ -22,8 +22,10 @@ to start buiding this app which is my first android development. The project was
 * Registration XML designed layout, a C# activity file for the registration page.
 * A menu XML designed layout.
 * A main activity.
-* Google map location services.
-* Firebase database and authentication real time integration.
+* Google map location services (Maps SDK for Android)
+* Firebase database and authentication real time integration
+* Geolocation API
+* Places API
 
 ### Installation Requirements
 
