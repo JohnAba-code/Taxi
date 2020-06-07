@@ -19,6 +19,8 @@ using System;
 using Android.Content;
 using Android.Gms.Location.Places.UI;
 using Android.Gms.Location.Places;
+using Android.Media;
+using Android.Graphics;
 
 namespace Taxi
 {
@@ -32,6 +34,13 @@ namespace Taxi
         //Textviews
         TextView pickupLocationText;
         TextView destinationText;
+
+        //Buttons
+        RadioButton pickupRadio;
+        RadioButton destinationRadio;
+
+        //imageview
+        ImageView centerMarker;
 
         //Layouts
         RelativeLayout layoutPickup;
@@ -51,6 +60,16 @@ namespace Taxi
         static int FASTEST_INTERVAL = 5;
         static int DISPLACEMENT = 3; // meters
 
+        //Helpers
+        MapFunctionHelper mapHelper;
+
+        //trip details
+        LatLng pickupLocationLatlng;
+        LatLng destinationLocationLatlng;
+
+        //Flags
+        int addressRequest = 1;
+        bool takeAddressFromSearch;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -87,12 +106,38 @@ namespace Taxi
             //Textview
             pickupLocationText = (TextView)FindViewById(Resource.Id.pickupLocationText);
             destinationText = (TextView)FindViewById(Resource.Id.destinationText);
+            //Buttons
+            pickupRadio = (RadioButton)FindViewById(Resource.Id.pickupRadio);
+            destinationRadio = (RadioButton)FindViewById(Resource.Id.destinationRadio);
+            pickupRadio.Click += PickupRadio_Click;
+            destinationRadio.Click += DestinationRadio_Click;
             //Layouts
             layoutPickup = (RelativeLayout)FindViewById(Resource.Id.layoutPickUp);
             layoutDestination = (RelativeLayout)FindViewById(Resource.Id.layoutDestination);
 
             layoutPickup.Click += LayoutPickup_Click;
             layoutDestination.Click += LayoutDestination_Click;
+
+            //imageview
+            centerMarker = (ImageView)FindViewById(Resource.Id.centerMarker);
+        }
+
+        private void DestinationRadio_Click(object sender, EventArgs e)
+        {
+            addressRequest = 2;
+            pickupRadio.Checked = false;
+            destinationRadio.Checked = true;
+            takeAddressFromSearch = false;
+            centerMarker.SetColorFilter(Color.Red);
+        }
+
+        private void PickupRadio_Click(object sender, EventArgs e)
+        {
+            addressRequest = 1;
+            pickupRadio.Checked = true;
+            destinationRadio.Checked = false;
+            takeAddressFromSearch = false;
+            centerMarker.SetColorFilter(Color.DarkGreen);
         }
 
         private void LayoutPickup_Click(object sender, EventArgs e)
@@ -223,7 +268,7 @@ namespace Taxi
             }
         }
 
-        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Android.App.Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
@@ -231,6 +276,11 @@ namespace Taxi
             {
                 if (resultCode == Android.App.Result.Ok)
                 {
+                    takeAddressFromSearch = true;
+                    pickupRadio.Checked = false;
+                    destinationRadio.Checked = false;
+                    centerMarker.SetColorFilter(Color.DarkGreen);
+
                     var place = PlaceAutocomplete.GetPlace(this, data);
                     pickupLocationText.Text = place.NameFormatted.ToString();
                     mainMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(place.LatLng, 15));
@@ -241,6 +291,11 @@ namespace Taxi
             {
                 if (resultCode == Android.App.Result.Ok)
                 {
+                    takeAddressFromSearch = true;
+                    pickupRadio.Checked = false;
+                    destinationRadio.Checked = false;
+                    centerMarker.SetColorFilter(Color.Red);
+
                     var place = PlaceAutocomplete.GetPlace(this, data);
                     destinationText.Text = place.NameFormatted.ToString();
                     mainMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(place.LatLng, 15));
@@ -252,6 +307,27 @@ namespace Taxi
         {
             //bool success = googleMap.SetMapStyle(MapStyleOptions.LoadRawResourceStyle(this, Resource.Raw.DarkMapStyle));
             mainMap = googleMap;
+            mainMap.CameraIdle += MainMap_CameraIdle;
+            string mapkey = Resources.GetString(Resource.String.mapkey);
+            mapHelper = new MapFunctionHelper(mapkey);
+        }
+
+        async void MainMap_CameraIdle(object sender, EventArgs e)
+        {
+            if (!takeAddressFromSearch) 
+            {
+                if (addressRequest == 1)
+                {
+                    pickupLocationLatlng = mainMap.CameraPosition.Target;
+                    pickupLocationText.Text = await mapHelper.FindCordinateAddress(pickupLocationLatlng);
+                }
+
+                else if (addressRequest == 2)
+                {
+                    destinationLocationLatlng = mainMap.CameraPosition.Target;
+                    destinationText.Text = await mapHelper.FindCordinateAddress(destinationLocationLatlng);
+                }
+            }
         }
 
         bool CheckLocationPermission() 
